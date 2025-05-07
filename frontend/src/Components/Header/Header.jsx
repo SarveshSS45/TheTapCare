@@ -9,9 +9,12 @@ import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import ListItemButton from "@mui/material/ListItemButton";
+import BookNowForm from "./Components/BookNowFrom"
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -32,12 +35,22 @@ const Header = () => {
       </div>
       <List>
         {navItems.map((item) => (
-          <ListItem button component="a" href={item.href} key={item.label}>
-            <ListItemText primary={item.label} />
+          <ListItem key={item.label} disablePadding>
+            <ListItemButton component="a" href={item.href}>
+              <ListItemText primary={item.label} />
+            </ListItemButton>
           </ListItem>
         ))}
         <ListItem>
-          <Button variant="contained" color="primary" fullWidth>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={() => {
+              setFormOpen(true);
+              setMobileOpen(false); // close drawer
+            }}
+          >
             Book Now
           </Button>
         </ListItem>
@@ -66,7 +79,10 @@ const Header = () => {
                 {item.label}
               </a>
             ))}
-            <button className="bg-white text-indigo-800 rounded-full font-medium px-4 py-2 hover:bg-indigo-100 transition">
+            <button
+              className="bg-white text-indigo-800 rounded-full font-medium px-4 py-2 hover:bg-indigo-100 transition"
+              onClick={() => setFormOpen(true)}
+            >
               Book Now
             </button>
           </div>
@@ -92,6 +108,9 @@ const Header = () => {
       >
         {drawer}
       </Drawer>
+
+      {/* Appointment Form Dialog */}
+      <BookNowForm open={formOpen} onClose={() => setFormOpen(false)} />
     </>
   );
 };
