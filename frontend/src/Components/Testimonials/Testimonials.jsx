@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+
+import BookNowForm from "../Header/Components/BookNowForm";
 
 const testimonials = [
   {
     id: 1,
     name: "Priya Sharma",
-    image: "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg",
+    image:
+      "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg",
     rating: 5,
     message:
       "The home lab test service was so convenient. The phlebotomist was professional and the whole process was quick and painless.",
@@ -12,7 +15,8 @@ const testimonials = [
   {
     id: 2,
     name: "Rahul Verma",
-    image: "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg",
+    image:
+      "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg",
     rating: 4.5,
     message:
       "Doctor consultation over call saved me so much time. The doctor was knowledgeable and prescribed the right medication for my condition.",
@@ -20,7 +24,8 @@ const testimonials = [
   {
     id: 3,
     name: "Anita Patel",
-    image: "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-6.jpg",
+    image:
+      "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-6.jpg",
     rating: 5,
     message:
       "Absolutely satisfied with the doorstep services. Easy to book and the care team followed up after the test too!",
@@ -46,21 +51,29 @@ const StarRating = ({ rating }) => {
   );
 };
 
-const CTASection = () => (
-  <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center">
-    <div className="container mx-auto px-4">
-      <h2 className="text-3xl md:text-4xl font-bold mb-6">
-        Your Health Matters, Take a Step Today
-      </h2>
-      <p className="text-xl mb-8 max-w-2xl mx-auto">
-        Don't postpone your health needs. Book an appointment now and experience healthcare at your doorstep.
-      </p>
-      <button className="bg-white text-indigo-700 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition text-lg">
-        Book Appointment
-      </button>
-    </div>
-  </section>
-);
+const CTASection = () => {
+  const [openModal, setOpenModal] = useState(false);
+  return (
+    <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          Your Health Matters, Take a Step Today
+        </h2>
+        <p className="text-xl mb-8 max-w-2xl mx-auto">
+          Don't postpone your health needs. Book an appointment now and
+          experience healthcare at your doorstep.
+        </p>
+        <button
+          onClick={() => setOpenModal(true)}
+          className="bg-white text-indigo-700 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition text-lg"
+        >
+          Book Appointment
+        </button>
+      </div>
+      <BookNowForm open={openModal} onClose={() => setOpenModal(false)} />
+    </section>
+  );
+};
 
 const TestimonialsSection = () => (
   <section className="px-6 py-16 bg-white">
@@ -96,7 +109,7 @@ const TestimonialsSection = () => (
 const Testimonials = () => (
   <>
     <CTASection />
-    <TestimonialsSection />
+    {/* <TestimonialsSection /> */}
   </>
 );
 

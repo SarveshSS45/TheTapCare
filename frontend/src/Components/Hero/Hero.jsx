@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import BookNowForm from '../Header/Components/BookNowForm';
 
 const Hero = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <section className="relative z-10 bg-gradient-to-br from-blue-600 to-indigo-800 text-white min-h-screen flex items-center">
       <div className="container mx-auto px-6 md:px-12 py-16 md:py-24 flex flex-col md:flex-row items-center justify-between gap-12">
@@ -8,13 +11,16 @@ const Hero = () => {
         {/* Text Section */}
         <div className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Swasthya Care, Now at Home in Just a Tap
+            Tap Care, Now at Home in Just a Tap
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-blue-100">
             Take care of your health easily and conveniently without leaving your home.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <button className="bg-white text-indigo-700 font-bold py-4 px-8 rounded-full hover:bg-blue-50 transition text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <button
+              onClick={() => setOpenModal(true)}
+              className="bg-white text-indigo-700 font-bold py-4 px-8 rounded-full hover:bg-blue-50 transition text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
               Book Appointment
             </button>
             <button className="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-full hover:bg-white/10 transition text-lg">
@@ -32,8 +38,10 @@ const Hero = () => {
             alt="Doctor attending to elderly patient at home"
           />
         </div>
-
       </div>
+
+      {/* BookNowForm Modal */}
+      <BookNowForm open={openModal} onClose={() => setOpenModal(false)} />
     </section>
   );
 };

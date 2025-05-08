@@ -10,7 +10,8 @@ import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ListItemButton from "@mui/material/ListItemButton";
-import BookNowForm from "./Components/BookNowFrom"
+import BookNowForm from "./Components/BookNowForm";
+import TapCareLogo from "../../assets/TapCareLogo.svg";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -68,7 +69,9 @@ const Header = () => {
         }}
       >
         <Toolbar className="flex justify-between">
-          <div className="px-6 text-xl font-bold">TheTapCare</div>
+          <div className="px-2">
+            <img src={TapCareLogo} alt="TheTapCare Logo" className="h-10" />
+          </div>
           <div className="px-6 hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <a
