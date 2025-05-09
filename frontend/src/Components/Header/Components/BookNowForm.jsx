@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -15,8 +15,14 @@ import {
   Snackbar,
   Alert,
   IconButton,
+  Slide,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+
+// Slide transition component
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Slide direction="down" ref={ref} {...props} />;
+});
 
 const BookNowForm = ({ open, onClose }) => {
   const [form, setForm] = useState({
@@ -31,14 +37,14 @@ const BookNowForm = ({ open, onClose }) => {
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
-    severity: "info", // "error" or "success"
+    severity: "info",
   });
 
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    if (name === "mobile" && !/^\d*$/.test(value)) return; // Allow only numbers
+    if (name === "mobile" && !/^\d*$/.test(value)) return; // Only numbers
     setForm((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -65,7 +71,6 @@ const BookNowForm = ({ open, onClose }) => {
     setTimeout(() => {
       console.log("Form submitted:", form);
 
-      // Reset form
       setForm({
         name: "",
         mobile: "",
@@ -82,13 +87,18 @@ const BookNowForm = ({ open, onClose }) => {
         severity: "success",
       });
 
-      onClose(); // Close dialog
+      onClose();
     }, 1000);
   };
 
   return (
     <>
-      <Dialog open={open} onClose={onClose} fullWidth>
+      <Dialog
+        open={open}
+        onClose={onClose}
+        fullWidth
+        TransitionComponent={Transition} // Slide animation
+      >
         <DialogTitle>
           Book Your Appointment
           <IconButton

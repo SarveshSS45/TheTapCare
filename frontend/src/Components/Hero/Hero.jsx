@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import BookNowForm from '../Header/Components/BookNowForm';
+import { motion } from 'framer-motion';
 
 const Hero = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -7,9 +8,14 @@ const Hero = () => {
   return (
     <section className="relative z-10 bg-gradient-to-br from-blue-600 to-indigo-800 text-white min-h-screen flex items-center">
       <div className="container mx-auto px-6 md:px-12 py-16 md:py-24 flex flex-col md:flex-row items-center justify-between gap-12">
-        
-        {/* Text Section */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left">
+
+        {/* Animated Text Section */}
+        <motion.div
+          className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Tap Care, Now at Home in Just a Tap
           </h1>
@@ -27,17 +33,22 @@ const Hero = () => {
               Learn More
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Image Section */}
-        <div className="w-full md:w-1/2 relative flex justify-center items-center">
+        {/* Animated Image Section */}
+        <motion.div
+          className="w-full md:w-1/2 relative flex justify-center items-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+        >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm"></div>
           <img
             className="w-full max-w-md md:max-w-lg h-auto rounded-2xl shadow-2xl relative z-10"
             src="https://storage.googleapis.com/uxpilot-auth.appspot.com/5eeaad724f-fa66e3f5ad1880145c1b.png"
             alt="Doctor attending to elderly patient at home"
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* BookNowForm Modal */}

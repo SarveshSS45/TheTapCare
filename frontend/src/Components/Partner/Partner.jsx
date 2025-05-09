@@ -1,16 +1,29 @@
-import React from 'react';
+import React from "react";
+import { motion } from "framer-motion";
 
 const Partner = () => {
   return (
     <section id="partners" className="py-16 bg-white">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+        {/* Animated heading */}
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           Our Trusted Lab Partner
-        </h2>
+        </motion.h2>
 
-        <div
+        {/* Animated partner card */}
+        <motion.div
           id="thyrocare-partner"
           className="max-w-4xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-xl shadow-sm border border-gray-100"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <div className="flex flex-col md:flex-row items-center">
             <div className="mb-6 md:mb-0 md:mr-8">
@@ -38,7 +51,7 @@ const Partner = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
