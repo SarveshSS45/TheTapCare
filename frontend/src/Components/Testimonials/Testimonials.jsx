@@ -1,34 +1,28 @@
 import React, { useState } from "react";
-
+import { motion } from "framer-motion";
 import BookNowForm from "../Header/Components/BookNowForm";
 
 const testimonials = [
   {
     id: 1,
     name: "Priya Sharma",
-    image:
-      "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg",
+    image: "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg",
     rating: 5,
-    message:
-      "The home lab test service was so convenient. The phlebotomist was professional and the whole process was quick and painless.",
+    message: "The home lab test service was so convenient. The phlebotomist was professional and the whole process was quick and painless.",
   },
   {
     id: 2,
     name: "Rahul Verma",
-    image:
-      "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg",
+    image: "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg",
     rating: 4.5,
-    message:
-      "Doctor consultation over call saved me so much time. The doctor was knowledgeable and prescribed the right medication for my condition.",
+    message: "Doctor consultation over call saved me so much time. The doctor was knowledgeable and prescribed the right medication for my condition.",
   },
   {
     id: 3,
     name: "Anita Patel",
-    image:
-      "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-6.jpg",
+    image: "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-6.jpg",
     rating: 5,
-    message:
-      "Absolutely satisfied with the doorstep services. Easy to book and the care team followed up after the test too!",
+    message: "Absolutely satisfied with the doorstep services. Easy to book and the care team followed up after the test too!",
   },
 ];
 
@@ -54,38 +48,65 @@ const StarRating = ({ rating }) => {
 const CTASection = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center">
+    <motion.section
+      className="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold mb-6"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
           Your Health Matters, Take a Step Today
-        </h2>
-        <p className="text-xl mb-8 max-w-2xl mx-auto">
-          Don't postpone your health needs. Book an appointment now and
-          experience healthcare at your doorstep.
-        </p>
-        <button
+        </motion.h2>
+        <motion.p
+          className="text-xl mb-8 max-w-2xl mx-auto"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          Don't postpone your health needs. Book an appointment now and experience healthcare at your doorstep.
+        </motion.p>
+        <motion.button
           onClick={() => setOpenModal(true)}
           className="bg-white text-indigo-700 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition text-lg"
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.6 }}
         >
           Book Appointment
-        </button>
+        </motion.button>
       </div>
       <BookNowForm open={openModal} onClose={() => setOpenModal(false)} />
-    </section>
+    </motion.section>
   );
 };
 
 const TestimonialsSection = () => (
-  <section className="px-6 py-16 bg-white">
+  <motion.section
+    className="px-6 py-16 bg-white"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true, amount: 0.3 }}
+    transition={{ duration: 0.6 }}
+  >
     <div className="container mx-auto px-4">
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
         What Our Patients Say
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {testimonials.map((testimonial) => (
-          <div
+        {testimonials.map((testimonial, index) => (
+          <motion.div
             key={testimonial.id}
             className="bg-gray-50 p-6 rounded-xl shadow-sm"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2 }}
           >
             <div className="flex items-center mb-4">
               <img
@@ -99,11 +120,11 @@ const TestimonialsSection = () => (
               </div>
             </div>
             <p className="text-gray-600">"{testimonial.message}"</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
-  </section>
+  </motion.section>
 );
 
 const Testimonials = () => (

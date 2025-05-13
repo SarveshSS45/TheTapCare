@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import ThyrocareLogo from "../../assets/Thyrocare.png"; 
 
 const Partner = () => {
   return (
@@ -29,8 +30,8 @@ const Partner = () => {
             <div className="mb-6 md:mb-0 md:mr-8">
               <img
                 className="w-48 h-48 object-contain"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/b6df782a20-5dd4f3bcca08ec3ad05f.png"
-                alt="Thyrocare logo, healthcare laboratory company in India, professional medical logo"
+                src={ThyrocareLogo}
+                alt="Thyrocare Logo"
               />
             </div>
             <div>
