@@ -1,14 +1,21 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, WhatsApp } from '@mui/icons-material';
+import TapCareLogo from '../../assets/TapCareLogo.png'; 
 
 const Footer = () => {
   return (
-    <footer className="px-10 bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-12  w-full z-9">
+    <footer className="px-10 bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-12 w-full z-9">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* About */}
+          {/* About with Logo */}
           <div>
-            <h3 className="px-6 text-xl font-bold mb-4">Tap Care</h3>
+            <a href="#hero" className="block mb-4 px-6">
+              <img
+                src={TapCareLogo}
+                alt="Tap Care Logo"
+                className="w-32 h-auto hover:opacity-90 transition-opacity"
+              />
+            </a>
             <p className="px-6 text-gray-300">
               Bringing healthcare to your doorstep with trusted professionals and reliable services.
             </p>
@@ -48,7 +55,7 @@ const Footer = () => {
         {/* Footer Bottom */}
         <div className="border-t border-indigo-700 pt-8 text-center">
           <p className="text-gray-300">
-            © 2025 Tap Care. All rights reserved.
+            © 2025 The Tap Care. All rights reserved.
           </p>
         </div>
       </div>

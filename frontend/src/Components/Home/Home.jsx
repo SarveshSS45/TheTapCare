@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react"; // ✅ import useState
 import Header from "../Header/Header";
 import Hero from "../Hero/Hero";
 import Services from "../Services/Services";
@@ -10,11 +10,13 @@ import Contact from "../Contact/Contact";
 import FloatingButtons from "../Button/Button";
 
 const Home = () => {
+  const [heroInView, setHeroInView] = useState(true);
+
   return (
     <>
       <Header />
-      <FloatingButtons />
-      <Hero />
+      <FloatingButtons visible={heroInView} />
+      <Hero setHeroInView={setHeroInView} />
       <Services />
       <Partner />
       <HowItWorks />

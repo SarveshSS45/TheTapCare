@@ -11,7 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ListItemButton from "@mui/material/ListItemButton";
 import BookNowForm from "./Components/BookNowForm";
-import TapCareLogo from "../../assets/TapCareLogo.svg";
+import TapCareLogo from "../../assets/TapCareLogo.png";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -68,8 +68,8 @@ const Header = () => {
           boxShadow: 3,
         }}
       >
-        <Toolbar className="flex justify-between">
-          <div className="px-2">
+        <Toolbar className="flex justify-between !pl-0">
+          <div className="flex justify-between px-13">
             <img src={TapCareLogo} alt="TheTapCare Logo" className="h-10" />
           </div>
           <div className="px-6 hidden md:flex items-center gap-6">
@@ -112,7 +112,6 @@ const Header = () => {
         {drawer}
       </Drawer>
 
-      {/* Appointment Form Dialog */}
       <BookNowForm open={formOpen} onClose={() => setFormOpen(false)} />
     </>
   );

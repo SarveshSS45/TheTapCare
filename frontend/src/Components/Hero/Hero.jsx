@@ -1,15 +1,44 @@
-import React, { useState } from 'react';
-import BookNowForm from '../Header/Components/BookNowForm';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from "react";
+import BookNowForm from "../Header/Components/BookNowForm";
+import { motion, AnimatePresence } from "framer-motion";
+import HeroImg1 from "../../assets/HeroImg1.png";
+import HeroImg2 from "../../assets/HeroImg2.png";
 
-const Hero = () => {
-  const [openModal, setOpenModal] = useState(false);
+const Hero = ({ setHeroInView }) => {
+  const [openModal, setOpenModal] = React.useState(false);
+  const [currentImage, setCurrentImage] = React.useState(0);
+  const heroRef = useRef(null);
+
+  const images = [HeroImg1, HeroImg2];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHeroInView(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (heroRef.current) observer.observe(heroRef.current);
+    return () => {
+      if (heroRef.current) observer.unobserve(heroRef.current);
+    };
+  }, [setHeroInView]);
 
   return (
-    <section className="relative z-10 bg-gradient-to-br from-blue-600 to-indigo-800 text-white min-h-screen flex items-center">
+    <section id="hero"
+      ref={heroRef}
+      className="relative z-10 bg-gradient-to-br from-blue-600 to-indigo-800 text-white min-h-screen flex items-center"
+    >
       <div className="container mx-auto px-6 md:px-12 py-16 md:py-24 flex flex-col md:flex-row items-center justify-between gap-12">
-
-        {/* Animated Text Section */}
+        {/* Text Section */}
         <motion.div
           className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left"
           initial={{ opacity: 0, y: 50 }}
@@ -24,34 +53,33 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <button
-              onClick={() => setOpenModal(true)}
               className="bg-white text-indigo-700 font-bold py-4 px-8 rounded-full hover:bg-blue-50 transition text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              Book Appointment
+              Book Lab Test
             </button>
             <button className="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-full hover:bg-white/10 transition text-lg">
-              Learn More
+              Consult Doctor
             </button>
           </div>
         </motion.div>
 
-        {/* Animated Image Section */}
-        <motion.div
-          className="w-full md:w-1/2 relative flex justify-center items-center"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm"></div>
-          <img
-            className="w-full max-w-md md:max-w-lg h-auto rounded-2xl shadow-2xl relative z-10"
-            src="https://storage.googleapis.com/uxpilot-auth.appspot.com/5eeaad724f-fa66e3f5ad1880145c1b.png"
-            alt="Doctor attending to elderly patient at home"
-          />
-        </motion.div>
+        {/* Image Slideshow */}
+        <div className="w-full md:w-1/2 relative flex justify-center items-center">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentImage}
+              src={images[currentImage]}
+              alt="Hero Slide"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+              className="w-full max-w-xs md:max-w-sm max-h-[360px] h-auto rounded-2xl border-4 border-white shadow-2xl relative z-10"
+            />
+          </AnimatePresence>
+        </div>
       </div>
 
-      {/* BookNowForm Modal */}
       <BookNowForm open={openModal} onClose={() => setOpenModal(false)} />
     </section>
   );

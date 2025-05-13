@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Call, WhatsApp } from "@mui/icons-material";
 
 const Button = ({ label, variant = "filled", children, className = "", ...props }) => {
@@ -15,25 +15,11 @@ const Button = ({ label, variant = "filled", children, className = "", ...props 
   );
 };
 
-const FloatingButtons = () => {
-  const [showButtons, setShowButtons] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
-    setShowButtons(currentScrollY < lastScrollY || currentScrollY < 50);
-    setLastScrollY(currentScrollY);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
+const FloatingButtons = ({ visible }) => {
   return (
     <div
       className={`fixed bottom-6 right-6 z-50 flex-col gap-4 transition-opacity duration-300 ${
-        showButtons ? "flex" : "opacity-0 pointer-events-none"
+        visible ? "flex" : "opacity-0 pointer-events-none"
       } hidden sm:flex`}
     >
       <a href="tel:+918108737114">
@@ -57,4 +43,3 @@ const FloatingButtons = () => {
 };
 
 export default FloatingButtons;
-
