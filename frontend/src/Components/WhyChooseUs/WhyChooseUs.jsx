@@ -1,6 +1,7 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
 import { AccessTime, Verified, Favorite } from "@mui/icons-material";
+import { useEffect } from "react";
 
 const features = [
   {
@@ -25,36 +26,42 @@ const features = [
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
-  visible: (i) => ({
+  visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      delay: i * 0.2,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 const WhyChooseUs = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-100px", amount: 0.2 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [isInView, controls]);
+
   return (
-    <div className="px-4 py-16 sm:px-6 lg:px-8 bg-gray-50">
+    <div className="px-4 py-16 sm:px-6 lg:px-8 bg-gray-50" ref={ref}>
       <div className="max-w-4xl mx-auto text-center mb-10">
         <motion.h2
           className="text-3xl font-bold text-gray-900 mb-2"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.2, once: false }}
-          transition={{ duration: 0.6 }}
+          initial="hidden"
+          animate={controls}
+          variants={cardVariants}
         >
           Why Choose Us
         </motion.h2>
         <motion.p
           className="text-lg text-gray-600"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.2, once: false }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          initial="hidden"
+          animate={controls}
+          variants={cardVariants}
         >
           Quality and Trust assured
         </motion.p>
@@ -65,11 +72,10 @@ const WhyChooseUs = () => {
           <motion.div
             key={index}
             className="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300"
-            custom={index}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
             variants={cardVariants}
+            initial="hidden"
+            animate={controls}
+            custom={index}
           >
             <div
               className={`w-12 h-12 flex items-center justify-center rounded-full ${feature.bg} mb-4`}

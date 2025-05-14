@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // ✅ import useState
+import React, { useState } from "react";
 import Header from "../Header/Header";
 import Hero from "../Hero/Hero";
 import Services from "../Services/Services";
@@ -8,6 +8,8 @@ import Partner from "../Partner/Partner";
 import Testimonials from "../Testimonials/Testimonials";
 import Contact from "../Contact/Contact";
 import FloatingButtons from "../Button/Button";
+import Faq from "../Faq/Faq"; 
+import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
   const [heroInView, setHeroInView] = useState(true);
@@ -18,9 +20,11 @@ const Home = () => {
       <FloatingButtons visible={heroInView} />
       <Hero setHeroInView={setHeroInView} />
       <Services />
+      <WhyChooseUs />
       <Partner />
       <HowItWorks />
       <Testimonials />
+      <Faq /> 
       <Contact />
       <Footer />
     </>
