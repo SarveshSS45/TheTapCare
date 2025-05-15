@@ -17,7 +17,9 @@ const Footer = () => {
               />
             </a>
             <p className="px-6 text-gray-300">
-              Bringing healthcare to your doorstep with trusted professionals and reliable services.
+              Book lab tests and on-demand doctor consultations at your doorstep. Get NABL-certified, 
+              government-approved services with home sample collection and verified doctors—trusted, affordable, 
+              and just a tap away.
             </p>
           </div>
 
@@ -55,7 +57,7 @@ const Footer = () => {
         {/* Footer Bottom */}
         <div className="border-t border-indigo-700 pt-8 text-center">
           <p className="text-gray-300">
-            © 2025 The Tap Care. All rights reserved.
+            © 2025 The TapCare Powered by Medifinder Healthcare Solutions Pvt Ltd. All rights reserved.
           </p>
         </div>
       </div>

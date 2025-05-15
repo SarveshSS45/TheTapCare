@@ -46,7 +46,7 @@ const Hero = ({ setHeroInView }) => {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Tap Care, Now at Home in Just a Tap
+            The TapCare Now at Home in Just a Tap
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-blue-100">
             Take care of your health easily and conveniently without leaving your home.

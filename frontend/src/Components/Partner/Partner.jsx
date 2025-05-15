@@ -37,7 +37,9 @@ const Partner = () => {
             <div>
               <h3 className="text-2xl font-bold text-gray-800 mb-3">Thyrocare</h3>
               <p className="text-gray-600 mb-4">
-                Tests you can trust | India's best laboratories, NABL and government certification | Since 1931
+                Thyrocare is a leading diagnostic lab in India known for affordable and accurate testing. NABL-certified and tech-driven. 
+                it offers a wide range of health tests and packages with home sample collection and quick reports. Trusted nationwide 
+                automated lab and extensive partner network.
               </p>
               <div className="flex flex-wrap gap-3">
                 <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
@@ -47,7 +49,7 @@ const Partner = () => {
                   Government Approved
                 </span>
                 <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
-                  Trusted Since 1931
+                  Trusted Since 1996
                 </span>
               </div>
             </div>
