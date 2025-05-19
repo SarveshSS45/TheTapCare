@@ -20,7 +20,7 @@ const FloatingButtons = ({ visible }) => {
     <div
       className={`fixed bottom-6 right-6 z-50 flex-col gap-4 transition-opacity duration-300 ${
         visible ? "flex" : "opacity-0 pointer-events-none"
-      } hidden sm:flex`}
+      }`}
     >
       <a href="tel:+918108737114">
         <Button

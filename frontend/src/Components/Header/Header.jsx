@@ -11,6 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ListItemButton from "@mui/material/ListItemButton";
 import BookNowForm from "./Components/BookNowForm";
+
 import TapCareLogo from "../../assets/TapCareLogo.png";
 
 const Header = () => {
@@ -62,10 +63,11 @@ const Header = () => {
   return (
     <>
       <AppBar
-        position="static"
+        position="sticky"
         sx={{
           background: "linear-gradient(to right, #2563eb, #3730a3)",
           boxShadow: 3,
+          zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
         <Toolbar className="flex justify-between !pl-0">
@@ -113,6 +115,7 @@ const Header = () => {
       </Drawer>
 
       <BookNowForm open={formOpen} onClose={() => setFormOpen(false)} />
+        
     </>
   );
 };
