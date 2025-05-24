@@ -10,11 +10,11 @@ import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ListItemButton from "@mui/material/ListItemButton";
-import BookNowForm from "./Components/BookNowForm";
 
-import TapCareLogo from "../../assets/TapCareLogo.png";
 
-const Header = () => {
+import TapCareLogo from "../../../../assets/TapCareLogo.png";
+
+const HC_Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
 
@@ -23,10 +23,9 @@ const Header = () => {
   };
 
   const navItems = [
-    { label: "Services", href: "#services" },
-    { label: "Lab Partners", href: "#partners" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Host A Camp", href:"/host-camp"},
+    { label: "What We Offer", href: "#what-we-offer" },
+    { label: "Benefits for You", href: "#benefits-for-you" },
+    { label: "Who Can Host Camp", href: "#who-can-host-camp" },
   ];
 
   const drawer = (
@@ -51,10 +50,10 @@ const Header = () => {
             fullWidth
             onClick={() => {
               setFormOpen(true);
-              setMobileOpen(false); // close drawer
+              setMobileOpen(false); 
             }}
           >
-            Book Now
+            Host A Camp
           </Button>
         </ListItem>
       </List>
@@ -89,7 +88,7 @@ const Header = () => {
               className="bg-white text-indigo-800 rounded-full font-medium px-4 py-2 hover:bg-indigo-100 transition"
               onClick={() => setFormOpen(true)}
             >
-              Book Now
+              Host A Camp
             </button>
           </div>
 
@@ -115,10 +114,10 @@ const Header = () => {
         {drawer}
       </Drawer>
 
-      <BookNowForm open={formOpen} onClose={() => setFormOpen(false)} />
+      
         
     </>
   );
 };
 
-export default Header;
+export default HC_Header;
