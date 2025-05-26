@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -11,12 +12,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ListItemButton from "@mui/material/ListItemButton";
 
-
 import TapCareLogo from "../../../../assets/TapCareLogo.png";
 
 const HC_Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [formOpen, setFormOpen] = useState(false);
+  const navigate = useNavigate(); 
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -49,8 +49,8 @@ const HC_Header = () => {
             color="primary"
             fullWidth
             onClick={() => {
-              setFormOpen(true);
-              setMobileOpen(false); 
+              navigate("/host-camp-form");
+              setMobileOpen(false);
             }}
           >
             Host A Camp
@@ -86,7 +86,7 @@ const HC_Header = () => {
             ))}
             <button
               className="bg-white text-indigo-800 rounded-full font-medium px-4 py-2 hover:bg-indigo-100 transition"
-              onClick={() => setFormOpen(true)}
+              onClick={() => navigate("/host-camp-form")}
             >
               Host A Camp
             </button>
@@ -113,9 +113,6 @@ const HC_Header = () => {
       >
         {drawer}
       </Drawer>
-
-      
-        
     </>
   );
 };
