@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
 
   email: Yup.string().email("Invalid email"),
 
-  address: Yup.string(),
+  address: Yup.string().required("Address is Required"),
 
   city: Yup.string().matches(
     /^[A-Za-z ]+$/,

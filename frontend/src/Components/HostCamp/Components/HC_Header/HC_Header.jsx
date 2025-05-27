@@ -1,25 +1,27 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Button from "@mui/material/Button";
+import { useNavigate, useLocation } from "react-router-dom";
+import {
+  AppBar, Toolbar, IconButton, Drawer, List, ListItem,
+  ListItemText, Button, MenuItem, ListItemButton
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import ListItemButton from "@mui/material/ListItemButton";
-
 import TapCareLogo from "../../../../assets/TapCareLogo.png";
 
 const HC_Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+
+  const handleNavClick = (hash) => {
+    if (location.pathname !== "/host-camp") {
+      navigate(`/host-camp${hash}`);
+    } else {
+      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+    }
+    setMobileOpen(false);
   };
 
   const navItems = [
@@ -38,7 +40,7 @@ const HC_Header = () => {
       <List>
         {navItems.map((item) => (
           <ListItem key={item.label} disablePadding>
-            <ListItemButton component="a" href={item.href}>
+            <ListItemButton onClick={() => handleNavClick(item.href)}>
               <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
@@ -74,15 +76,16 @@ const HC_Header = () => {
           <div className="flex justify-between px-13">
             <img src={TapCareLogo} alt="TheTapCare Logo" className="h-10" />
           </div>
+
           <div className="px-6 hidden md:flex items-center gap-6">
             {navItems.map((item) => (
-              <a
+              <button
                 key={item.label}
-                href={item.href}
-                className="text-white hover:underline"
+                onClick={() => handleNavClick(item.href)}
+                className="text-white hover:underline bg-transparent border-none cursor-pointer"
               >
                 {item.label}
-              </a>
+              </button>
             ))}
             <button
               className="bg-white text-indigo-800 rounded-full font-medium px-4 py-2 hover:bg-indigo-100 transition"

@@ -1,9 +1,10 @@
-// frontend/src/Components/HostCamp/Components/HC_CTAButton/HC_CTAButton.jsx
-
-import React from 'react';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import React from "react";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { useNavigate } from "react-router-dom";
 
 const HC_CTAButton = () => {
+  const navigate = useNavigate();
+
   return (
     <section
       id="cta-final"
@@ -14,7 +15,8 @@ const HC_CTAButton = () => {
       </h2>
       <button
         className="flex items-center bg-gradient-to-r from-[#1e88e5] to-[#1ABC9C] text-white font-extrabold text-xl px-10 py-4 rounded-full shadow-2xl hover:scale-105 transition cursor-pointer"
-        style={{ boxShadow: '0 4px 24px 0 #1e88e540' }}
+        style={{ boxShadow: "0 4px 24px 0 #1e88e540" }}
+        onClick={() => navigate("/host-camp-form")}
       >
         <CalendarMonthIcon className="mr-2" />
         Host a Camp Now

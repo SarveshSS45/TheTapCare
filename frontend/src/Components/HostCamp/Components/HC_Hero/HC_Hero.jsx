@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const phrases = [
   "Gyms & Fitness Centers",
@@ -9,6 +10,8 @@ const phrases = [
 ];
 
 const HC_Hero = () => {
+  const navigate = useNavigate();
+
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
@@ -69,12 +72,14 @@ const HC_Hero = () => {
         <p className="text-base md:text-lg text-[#364152]">
           Affordable preventive healthcare for your community, fully managed by
           our team in collaboration with{" "}
-          <span className="font-semibold text-[#1565c0]">Thyrocare</span>, India's leading diagnostics provider.
+          <span className="font-semibold text-[#1565c0]">Thyrocare</span>,
+          India's leading diagnostics provider.
         </p>
 
         <button
           className="inline-block bg-gradient-to-r from-[#1e88e5] to-[#1ABC9C] text-white px-7 py-3 rounded-full font-bold text-lg shadow hover:scale-105 transition"
           id="hc-hero-cta-btn"
+          onClick={() => navigate("/host-camp-form")}
         >
           Host a Camp
         </button>
