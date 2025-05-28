@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -32,8 +33,18 @@ const benefits = [
 ];
 
 const HC_Benefits = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, margin: '-100px' });
+
   return (
-    <section id="benefits-for-you" className="bg-[#e8f5fd] py-14 px-4 md:px-16">
+    <motion.section
+      id="benefits-for-you"
+      ref={sectionRef}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+      className="bg-[#e8f5fd] py-14 px-4 md:px-16"
+    >
       <h2 className="text-2xl md:text-3xl font-bold text-[#1e88e5] mb-8 text-center">
         Benefits for You
       </h2>
@@ -50,7 +61,7 @@ const HC_Benefits = () => {
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

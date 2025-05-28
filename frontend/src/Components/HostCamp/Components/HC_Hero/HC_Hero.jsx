@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const phrases = [
   "Gyms & Fitness Centers",
@@ -44,12 +45,20 @@ const HC_Hero = () => {
   }, [charIndex, isDeleting, currentPhraseIndex]);
 
   return (
-    <main
+    <motion.main
       id="hc-hero"
       className="w-full flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-[#e3f1fc] via-[#ffffff] to-[#d6f7e8] px-6 md:px-16 py-14 md:py-24 gap-10"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
     >
       {/* Left Content */}
-      <div className="flex-1 max-w-xl space-y-7">
+      <motion.div
+        className="flex-1 max-w-xl space-y-7"
+        initial={{ x: -50, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.7 }}
+      >
         <h1 className="text-3xl md:text-5xl font-extrabold text-[#1e88e5] leading-tight">
           Host a Health Camp at Your
           <br />
@@ -83,17 +92,22 @@ const HC_Hero = () => {
         >
           Host a Camp
         </button>
-      </div>
+      </motion.div>
 
       {/* Right Image */}
-      <div className="flex-1 flex items-center justify-center">
+      <motion.div
+        className="flex-1 flex items-center justify-center"
+        initial={{ x: 50, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.7 }}
+      >
         <img
           className="rounded-xl w-80 h-80 md:w-[22rem] md:h-[22rem] object-cover shadow-lg"
           src="https://storage.googleapis.com/uxpilot-auth.appspot.com/42538a863f-271eabce86698eaf2a5d.png"
           alt="health camp illustration"
         />
-      </div>
-    </main>
+      </motion.div>
+    </motion.main>
   );
 };
 
