@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
-  AppBar, Toolbar, IconButton, Drawer, List, ListItem,
-  ListItemText, Button, MenuItem, ListItemButton
+  AppBar,
+  Toolbar,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Button,
+  MenuItem,
+  ListItemButton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -31,21 +39,24 @@ const HC_Header = () => {
   ];
 
   const drawer = (
-    <div className="w-64 p-4">
-      <div className="flex justify-end">
+    <div className="w-full max-w-md mx-auto p-6 flex flex-col items-center space-y-4">
+      <div className="w-full flex justify-end">
         <IconButton onClick={handleDrawerToggle}>
           <CloseIcon />
         </IconButton>
       </div>
-      <List>
+      <List className="w-full flex flex-col items-center space-y-2">
         {navItems.map((item) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton onClick={() => handleNavClick(item.href)}>
-              <ListItemText primary={item.label} />
+          <ListItem key={item.label} disablePadding className="w-full">
+            <ListItemButton
+              className="justify-center"
+              onClick={() => handleNavClick(item.href)}
+            >
+              <ListItemText primary={item.label} className="text-center" />
             </ListItemButton>
           </ListItem>
         ))}
-        <ListItem>
+        <ListItem className="w-full">
           <Button
             variant="contained"
             color="primary"
@@ -73,7 +84,10 @@ const HC_Header = () => {
         }}
       >
         <Toolbar className="flex justify-between !pl-0">
-          <div className="flex justify-between px-13">
+          <div
+            className="flex justify-between px-13 cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             <img src={TapCareLogo} alt="TheTapCare Logo" className="h-10" />
           </div>
 
@@ -109,10 +123,16 @@ const HC_Header = () => {
       </AppBar>
 
       <Drawer
-        anchor="right"
+        anchor="top"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
+        sx={{
+          "& .MuiDrawer-paper": {
+            height: "auto",
+            maxHeight: "80vh",
+          },
+        }}
       >
         {drawer}
       </Drawer>

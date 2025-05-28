@@ -1,57 +1,63 @@
 import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Button,
+  ListItemButton,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import ListItemButton from "@mui/material/ListItemButton";
 import BookNowForm from "./Components/BookNowForm";
-
 import TapCareLogo from "../../assets/TapCareLogo.png";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const navItems = [
     { label: "Services", href: "#services" },
     { label: "Lab Partners", href: "#partners" },
     { label: "How It Works", href: "#how-it-works" },
-    { label: "Host A Camp", href:"/host-camp"},
+    { label: "Host A Camp", href: "/host-camp" },
   ];
 
   const drawer = (
-    <div className="w-64 p-4">
-      <div className="flex justify-end">
+    <div className="w-full max-w-md mx-auto p-6 flex flex-col items-center space-y-4">
+      <div className="w-full flex justify-end">
         <IconButton onClick={handleDrawerToggle}>
           <CloseIcon />
         </IconButton>
       </div>
-      <List>
+      <List className="w-full flex flex-col items-center space-y-2">
         {navItems.map((item) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton component="a" href={item.href}>
-              <ListItemText primary={item.label} />
+          <ListItem key={item.label} disablePadding className="w-full">
+            <ListItemButton
+              component="a"
+              href={item.href}
+              className="justify-center"
+              onClick={handleDrawerToggle}
+            >
+              <ListItemText primary={item.label} className="text-center" />
             </ListItemButton>
           </ListItem>
         ))}
-        <ListItem>
+        <ListItem className="w-full">
           <Button
             variant="contained"
             color="primary"
             fullWidth
             onClick={() => {
               setFormOpen(true);
-              setMobileOpen(false); // close drawer
+              setMobileOpen(false);
             }}
           >
             Book Now
@@ -72,9 +78,15 @@ const Header = () => {
         }}
       >
         <Toolbar className="flex justify-between !pl-0">
-          <div className="flex justify-between px-13">
+          {/* Logo with navigation */}
+          <div
+            className="flex justify-between px-13 cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             <img src={TapCareLogo} alt="TheTapCare Logo" className="h-10" />
           </div>
+
+          {/* Desktop nav */}
           <div className="px-6 hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <a
@@ -93,6 +105,7 @@ const Header = () => {
             </button>
           </div>
 
+          {/* Mobile menu icon */}
           <div className="md:hidden">
             <IconButton
               color="inherit"
@@ -106,17 +119,24 @@ const Header = () => {
         </Toolbar>
       </AppBar>
 
+      {/* Top Drawer for mobile */}
       <Drawer
-        anchor="right"
+        anchor="top"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
+        sx={{
+          "& .MuiDrawer-paper": {
+            height: "auto",
+            maxHeight: "80vh",
+          },
+        }}
       >
         {drawer}
       </Drawer>
 
+      {/* Booking Form Modal */}
       <BookNowForm open={formOpen} onClose={() => setFormOpen(false)} />
-        
     </>
   );
 };
