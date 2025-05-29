@@ -9,7 +9,6 @@ import {
   ListItem,
   ListItemText,
   Button,
-  MenuItem,
   ListItemButton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -62,11 +61,15 @@ const HC_Header = () => {
             color="primary"
             fullWidth
             onClick={() => {
-              navigate("/host-camp-form");
+              if (location.pathname === "/host-camp-form") {
+                navigate("/");
+              } else {
+                navigate("/host-camp-form");
+              }
               setMobileOpen(false);
             }}
           >
-            Host A Camp
+            Back Home
           </Button>
         </ListItem>
       </List>
@@ -85,7 +88,7 @@ const HC_Header = () => {
       >
         <Toolbar className="flex justify-between !pl-0">
           <div
-            className="flex justify-between px-13 cursor-pointer"
+            className="flex items-center px-4 cursor-pointer"
             onClick={() => navigate("/")}
           >
             <img src={TapCareLogo} alt="TheTapCare Logo" className="h-10" />
@@ -103,9 +106,15 @@ const HC_Header = () => {
             ))}
             <button
               className="bg-white text-indigo-800 rounded-full font-medium px-4 py-2 hover:bg-indigo-100 transition"
-              onClick={() => navigate("/host-camp-form")}
+              onClick={() => {
+                if (location.pathname === "/host-camp-form") {
+                  navigate("/");
+                } else {
+                  navigate("/host-camp-form");
+                }
+              }}
             >
-              Host A Camp
+              Back To Home
             </button>
           </div>
 
