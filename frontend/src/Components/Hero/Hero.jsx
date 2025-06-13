@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState,useEffect, useRef  } from "react";
 import BookNowForm from "../Header/Components/BookNowForm";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroImg1 from "../../assets/HeroImg1.png";
 import HeroImg2 from "../../assets/HeroImg2.png";
 
 const Hero = ({ setHeroInView }) => {
-  const [openModal, setOpenModal] = React.useState(false);
+  const [formOpen, setFormOpen] = useState(false);
   const [currentImage, setCurrentImage] = React.useState(0);
   const heroRef = useRef(null);
 
@@ -54,6 +54,7 @@ const Hero = ({ setHeroInView }) => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <button
               className="bg-white text-indigo-700 font-bold py-4 px-8 rounded-full hover:bg-blue-50 transition text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              onClick={() => setFormOpen(true)}
             >
               Book Lab Test
             </button>
@@ -80,7 +81,8 @@ const Hero = ({ setHeroInView }) => {
         </div>
       </div>
 
-      <BookNowForm open={openModal} onClose={() => setOpenModal(false)} />
+      {/* Booking Form Modal */}
+      <BookNowForm open={formOpen} onClose={() => setFormOpen(false)} />
     </section>
   );
 };

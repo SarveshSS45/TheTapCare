@@ -71,14 +71,14 @@ const Header = () => {
     <>
       <AppBar
         position="sticky"
+        elevation={0} // ✅ Remove elevation shadow
         sx={{
-          background: "linear-gradient(to right, #2563eb, #3730a3)",
-          boxShadow: 3,
+          background: "linear-gradient(to bottom right, #2563eb, #3730a3)", // ✅ Match hero gradient
+          boxShadow: "none", // ✅ Remove shadow line
           zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
         <Toolbar className="flex justify-between !pl-0">
-          {/* Logo with navigation */}
           <div
             className="flex justify-between px-13 cursor-pointer"
             onClick={() => navigate("/")}

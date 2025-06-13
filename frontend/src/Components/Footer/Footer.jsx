@@ -9,14 +9,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* About with Logo */}
           <div>
-            <a href="#hero" className="block mb-4 px-6">
+            <a href="#hero" className="block mb-4">
               <img
                 src={TapCareLogo}
                 alt="Tap Care Logo"
                 className="w-32 h-auto hover:opacity-90 transition-opacity"
               />
             </a>
-            <p className="px-6 text-gray-300">
+            <p className="text-gray-300">
               Book lab tests and on-demand doctor consultations at your
               doorstep. Get NABL-certified, government-approved services with
               home sample collection and verified doctors—trusted, affordable,
