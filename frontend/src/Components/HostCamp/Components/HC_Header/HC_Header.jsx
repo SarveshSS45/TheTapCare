@@ -61,7 +61,10 @@ const HC_Header = () => {
             color="primary"
             fullWidth
             onClick={() => {
-              if (location.pathname === "/host-camp-form") {
+              if (
+                location.pathname === "/host-camp-form" ||
+                location.pathname === "/host-camp"
+              ) {
                 navigate("/");
               } else {
                 navigate("/host-camp-form");
@@ -107,7 +110,10 @@ const HC_Header = () => {
             <button
               className="bg-white text-indigo-800 rounded-full font-medium px-4 py-2 hover:bg-indigo-100 transition"
               onClick={() => {
-                if (location.pathname === "/host-camp-form") {
+                if (
+                  location.pathname === "/host-camp-form" ||
+                  location.pathname === "/host-camp"
+                ) {
                   navigate("/");
                 } else {
                   navigate("/host-camp-form");
